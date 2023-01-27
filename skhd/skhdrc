@@ -1,0 +1,97 @@
+## windows
+# focus window
+ctrl - left : yabai -m window --focus west
+ctrl - down : yabai -m window --focus stack.next ||  yabai -m window --focus south
+ctrl - up : yabai -m window --focus stack.prev ||  yabai -m window --focus north
+ctrl - right : yabai -m window --focus east
+
+# move window
+shift + alt - left : yabai -m window --swap west
+shift + alt - down : yabai -m window --swap south
+shift + alt - up : yabai -m window --swap north
+shift + alt - right : yabai -m window --swap east
+
+# swap window
+shift + cmd - left : yabai -m window --warp west
+shift + cmd - down : yabai -m window --warp south
+shift + cmd - up : yabai -m window --warp north
+shift + cmd - right : yabai -m window --warp east
+
+# move window to another space
+shift + alt - 1 : yabai -m window --space 1 && yabai -m space --focus 1
+shift + alt - 2 : yabai -m window --space 2 && yabai -m space --focus 2
+shift + alt - 3 : yabai -m window --space 3 && yabai -m space --focus 3
+shift + alt - 4 : yabai -m window --space 4 && yabai -m space --focus 4
+shift + alt - 5 : yabai -m window --space 5 && yabai -m space --focus 5
+shift + alt - 6 : yabai -m window --space 6 && yabai -m space --focus 6
+shift + alt - 7 : yabai -m window --space 7 && yabai -m space --focus 7
+shift + alt - 8 : yabai -m window --space 8 && yabai -m space --focus 8
+shift + alt - 9 : yabai -m window --space 9 && yabai -m space --focus 9
+
+# Add the active window  to the window or stack to the {direction}
+# Note that this only works when the active window does *not* already belong to a stack
+cmd + alt - left  : yabai -m window west --stack $(yabai -m query --windows --window | jq -r '.id')
+cmd + alt - down  : yabai -m window south --stack $(yabai -m query --windows --window | jq -r '.id')
+cmd + alt - up    : yabai -m window north --stack $(yabai -m query --windows --window | jq -r '.id')
+cmd + alt - right : yabai -m window east --stack $(yabai -m query --windows --window | jq -r '.id')
+
+
+# Focus window up/down in stack
+#ctrl - n : yabai -m window --focus stack.next
+#ctrl - p : yabai -m window --focus stack.prev
+
+# focus stack?
+#cmd - up : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
+#cmd - down : yabai -m window --focus stack.next || yabai -m window --focus stack.first
+
+#cmd - s : yabai -m window --insert stack
+#cmd - v : yabai -m window --insert south
+
+
+# zoom
+alt - f : yabai -m window --toggle zoom-fullscreen
+alt - p : yabai -m window --toggle zoom-parent
+
+# toggle split
+alt - v : yabai -m window --toggle split
+
+alt + shift - f : yabai -m window --toggle float
+
+## spaces
+
+# focus spaces
+ctrl - 1 : yabai -m space --focus 1
+ctrl - 2 : yabai -m space --focus 2
+ctrl - 3 : yabai -m space --focus 3
+ctrl - 4 : yabai -m space --focus 4
+ctrl - 5 : yabai -m space --focus 5
+ctrl - 6 : yabai -m space --focus 6
+ctrl - 7 : yabai -m space --focus 7
+ctrl - 8 : yabai -m space --focus 8
+ctrl - 9 : yabai -m space --focus 9
+
+# cycle through spaces 
+# alt - [
+ctrl - 0x1B : yabai -m space --focus prev || yabai -m space --focus last
+# alt - ]
+ctrl - 0x18 : yabai -m space --focus next || yabai -m space --focus first
+
+# create and destroy spaces
+cmd + alt + shift - backspace : yabai -m space --destroy
+cmd + alt + shift - return : yabai -m space --create && yabai -m space --focus last
+
+# move spaces
+cmd + alt + shift - left : yabai -m space --move prev || yabai -m space --move last
+cmd + alt + shift - right : yabai -m space --move next || yabai -m space --move first
+
+## Displays
+# Move spaces to other displays
+cmd + alt + ctrl + shift - right : yabai -m space --display next || yabai -m space --display first
+
+
+## applications
+# launch new terminal
+alt - 0x2A : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
+
+ctrl + alt + cmd - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
+
